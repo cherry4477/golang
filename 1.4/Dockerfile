@@ -25,13 +25,3 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 WORKDIR $GOPATH
 
 COPY go-wrapper /usr/local/bin/
-RUN apt-get update && apt-get upgrade -q -y
-RUN apt-get install -q -y \
-    scala
-
-RUN mkdir /kafka
-COPY ./kafka /kafka
-WORKDIR /kafka
-
-EXPOSE 2181 9092
-ENTRYPOINT ["/kafka/start.sh"]
